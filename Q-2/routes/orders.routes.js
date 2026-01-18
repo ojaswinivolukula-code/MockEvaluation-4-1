@@ -1,8 +1,8 @@
 import express from "express";
-import { read, readFileSync, writeFileSync } from "node:fs";
+import {  readFileSync, writeFileSync } from "node:fs";
 
 const _route = express.Router();
-const DB_PATH = "./src/index.js";
+const DB_PATH = "db.json";
 _route.post("/", (req, res) => {
   const { productId, quantity } = req.body;
   const data = JSON.parse(readFileSync(DB_PATH, "utf-8"));
