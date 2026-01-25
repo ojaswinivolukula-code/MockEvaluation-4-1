@@ -22,3 +22,12 @@ export const registerCustomer = async (req, res) => {
   if (dbError) return res.status(400).json({ error: dbError.message });
   res.status(201).json(data);
 };
+export const deleteCustomer = async (req, res) => {
+  const { customerId } = req.params;
+  const { error } = await supabase
+    .from("customers")
+    .delete()
+    .eq("id", customerId);
+  if (error) return res.status(404).json({ error: "Invalid customer Id" });
+  res.json({ message: "Customer deleted successfully" });
+};
